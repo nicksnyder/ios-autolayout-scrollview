@@ -50,7 +50,6 @@ class HorizontalLabelsAutoLayoutView: UIView {
             NSLayoutConstraint.equal(rightLabel, toItem: self, attribute: .CenterY, constant: 0),
             ])
 
-
         // Performance problem disappears if we explicity set the width of the right label.
 //        NSLayoutConstraint.activateConstraints([
 //            NSLayoutConstraint(item: rightLabel, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 100)
