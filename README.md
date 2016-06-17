@@ -2,8 +2,7 @@
 
 This project demonstrates severe performance degration of UIScrollView during initial layout as well as scrolling (dropped frames).
 
-The degradation happens as when we have two UILabel positioned next to each other using Auto Layout with the following properties:
-
+The degradation happens when two UILabels are positioned next to each other using Auto Layout with the following properties:
 - The right UILabel has contentCompressionResistance == UILayoutPriorityRequired
 - The right UILabel has contentHuggingPriority == UILayoutPriorityRequired
 - The right UILabel has a small amount (one line) of text.
@@ -27,3 +26,5 @@ Not reproducible on:
 - iPhone 6 simulator running iOS 8.4
 
 This appears to be a performance regression in iOS 9.
+
+Bug report: 26856318
