@@ -11,6 +11,7 @@ import UIKit
 
 struct ViewControllerData {
     let title: String
+    let description: String
     let factoryBlock: Void -> UIViewController
 }
 
@@ -18,9 +19,13 @@ class MenuViewController: UITableViewController {
 
     private let viewControllers: [ViewControllerData] = [
 
-        ViewControllerData(title: "Horizontal Auto Layout scroll", factoryBlock: { () -> UIViewController in
-            HorizontalLabelsLayoutData.autoLayoutScrollViewControllerWithSubviewCount(50)
-        }),
+        ViewControllerData(
+            title: "Slow UIScrollView using Auto Layout",
+            description: "This UIScrollView is slow to load and slow to scroll when it is run on a physical device with the width of an iPhone 6.\n\nNote that it is not slow to load or scroll in landscape mode on iPhone 6.",
+            factoryBlock: { () -> UIViewController in
+                HorizontalLabelsLayoutData.autoLayoutScrollViewControllerWithSubviewCount(50)
+            }
+        ),
     ]
 
     convenience init() {
@@ -34,17 +39,25 @@ class MenuViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return viewControllers.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        cell.textLabel?.text = viewControllers[indexPath.row].title
+        cell.textLabel?.text = viewControllers[indexPath.section].title
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.navigationController?.pushViewController(viewControllers[indexPath.row].factoryBlock(), animated: false)
+        navigationController?.pushViewController(viewControllers[indexPath.section].factoryBlock(), animated: false)
+    }
+
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return viewControllers[section].description
     }
 }
 

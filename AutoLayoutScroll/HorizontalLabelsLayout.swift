@@ -15,7 +15,7 @@ struct HorizontalLabelsLayoutData: Equatable {
     static func generate(count count: Int) -> [HorizontalLabelsLayoutData] {
         var cells = [HorizontalLabelsLayoutData]()
         for _ in 0..<count {
-            // This data causes the label to wrap to a second line on iPhone 6
+            // This data causes the label to wrap to a second line on iPhone 6 in portrait.
             let cell = HorizontalLabelsLayoutData(leftText: "caaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaab", rightText: "555")
             //            let cell = HorizontalLabelsLayoutData(leftText: "caaaaaaaaaa aaaaaaaaaab", rightText: "555")
             cells.append(cell)
@@ -38,10 +38,3 @@ struct HorizontalLabelsLayoutData: Equatable {
 func ==(lhs: HorizontalLabelsLayoutData, rhs: HorizontalLabelsLayoutData) -> Bool {
     return lhs.leftText == rhs.leftText && lhs.rightText == rhs.rightText
 }
-
-//protocol HorizontalLabelsLayout: DataBinder {
-//    typealias DataType = HorizontalLabelsLayoutData
-//    var rootView: UIView { get }
-//    var leftLabel: UILabel! { get }
-//    var rightLabel: UILabel! { get }
-//}
