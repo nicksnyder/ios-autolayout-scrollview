@@ -24,11 +24,19 @@ class ScrollViewController<T: UIView>: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
+
         let scrollView = ScrollView<T>()
-        scrollView.frame = view.bounds
-        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
+
+        let views = ["scrollView": scrollView]
+        view.addConstraintsWithVisualFormat("V:|[scrollView]|", views: views)
+        view.addConstraintsWithVisualFormat("H:|[scrollView]|", views: views)
+
         configureBlock(scrollView.contentView)
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: scrollView.contentView, attribute: .Width, multiplier: 1, constant: 0))
+        NSLayoutConstraint.activateConstraints([
+            NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: scrollView.contentView, attribute: .Width, multiplier: 1, constant: 0)
+        ])
+
     }
 }

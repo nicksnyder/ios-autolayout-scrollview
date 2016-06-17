@@ -18,9 +18,22 @@ class VerticalAutoLayoutView: UIView {
             arrangedSubview.translatesAutoresizingMaskIntoConstraints = false
             addSubview(arrangedSubview)
         }
+//        refreshConstraints = true
+//        setNeedsUpdateConstraints()
         let constraints = autolayoutConstraintsForViews(subviews, superview: self)
         addConstraints(constraints)
     }
+//
+//    private var refreshConstraints: Bool = true
+//
+//    override func updateConstraints() {
+//        if refreshConstraints {
+//            refreshConstraints = false
+//            let constraints = autolayoutConstraintsForViews(subviews, superview: self)
+//            addConstraints(constraints)
+//        }
+//        super.updateConstraints()
+//    }
 
     private func autolayoutConstraintsForViews(views: [UIView], superview: UIView) -> [NSLayoutConstraint] {
         var previousView: UIView? = nil

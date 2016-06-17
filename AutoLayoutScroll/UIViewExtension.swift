@@ -22,6 +22,7 @@ extension UIView {
     }
 
     func addConstraintsWithVisualFormat(visualFormat: String, views: [String: UIView]) {
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: [], metrics: nil, views: views))
+        let constraints = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: [], metrics: nil, views: views)
+        NSLayoutConstraint.activateConstraints(constraints)
     }
 }
