@@ -15,7 +15,8 @@ struct HorizontalLabelsLayoutData: Equatable {
     static func generate(count count: Int) -> [HorizontalLabelsLayoutData] {
         var cells = [HorizontalLabelsLayoutData]()
         for _ in 0..<count {
-            switch UIScreen.mainScreen().bounds.width {
+            let width = UIScreen.mainScreen().bounds.width
+            switch width {
             case 375:
                 // This data causes the label to wrap to a second line on an iPhone 6 in portrait.
                 cells.append(HorizontalLabelsLayoutData(leftText: "caaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaab", rightText: "555"))
@@ -23,7 +24,8 @@ struct HorizontalLabelsLayoutData: Equatable {
                 // This data causes the label to wrap to a second line on an iPhone 5 in portrait.
                 cells.append(HorizontalLabelsLayoutData(leftText: "caaaaaaaaaaaaaaaaaa aaaaaaaaaaaab", rightText: "555"))
             default:
-                assertionFailure("don't have test data to reproduce the performance problem on this device.")
+                NSLog("the test data will not produce a performance problem for this width: \(width)")
+                cells.append(HorizontalLabelsLayoutData(leftText: "caaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaab", rightText: "555"))
             }
         }
         return cells
